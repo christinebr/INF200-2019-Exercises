@@ -1,6 +1,16 @@
 
+
 def letter_freq(txt):
-    pass
+    text_lowercase = txt.lower()  # makes all the letters lowercase
+    freq = {}  # creates an empty dictionary
+
+    for character in text_lowercase:
+        if character in freq:
+            freq[character] += 1
+        else:
+            freq[character] = 1
+    return freq
+
 
 if __name__ == '__main__':
     text = input('Please enter text to analyse: ')
