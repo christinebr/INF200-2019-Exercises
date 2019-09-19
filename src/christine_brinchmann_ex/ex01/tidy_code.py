@@ -1,35 +1,45 @@
 
-from random import randint as a
+from random import randint as random_integer
 
-__author__ = ''
-__email__ = '@nmbu.no'
+__author__ = 'Christine Brinchmann'
+__email__ = 'christibr@nmbu.no'
 
 
-def b():
-    c = 0
-    while c < 1:
-        c = int(input('Your guess: '))
-    return c
+def one_guess():
+    """ Asks for a number between 2 and 12, and converts the input to an
+    integer
+    """
+    guess = 0
+    while guess < 2 or guess > 12:
+        guess = int(input('Please guess a number between 2 and 12: '))
+    return guess
 
-def d():
-    return a(1, 6) + a(1, 6)
 
-def e(f, g):
-    return f == g
+def random_number():
+    """ Generates a random number between 2 and 12 """
+    return random_integer(1, 6) + random_integer(1, 6)
+
+
+def check_guess(correct_answer, guess):
+    """ Checks if the guess given is correct.
+    Returns True if the guess is correct and False otherwise.
+    """
+    return correct_answer == guess
+
 
 if __name__ == '__main__':
 
-    h = False
-    i = 3
-    j = d()
-    while not h and i > 0:
-        k = b()
-        h = e(j, k)
-        if not h:
+    win = False
+    points = 3
+    answer = random_number()
+    while not win and points > 0:
+        input_guess = one_guess()
+        win = check_guess(answer, input_guess)
+        if not win:
             print('Wrong, try again!')
-            i -= 1
+            points -= 1
 
-    if i > 0:
-        print('You won {} points.'.format(i))
+    if points > 0:
+        print('Congratulations! You won {} points.'.format(points))
     else:
-        print('You lost. Correct answer: {}.'.format(j))
+        print('You lost. Correct answer: {}.'.format(answer))
