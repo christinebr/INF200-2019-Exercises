@@ -1,6 +1,9 @@
 
 
 def letter_freq(txt):
+    """ Returns a dictionary with each character in a string (in alphabetic
+     order) as keys and how many times they appears in the string as values.
+    """
     text_lowercase = txt.lower()  # makes all the letters lowercase
     freq = {}  # creates an empty dictionary
     sorted_text = sorted(text_lowercase)  # sorts the letters alphabetically
