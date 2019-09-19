@@ -3,8 +3,9 @@
 def letter_freq(txt):
     text_lowercase = txt.lower()  # makes all the letters lowercase
     freq = {}  # creates an empty dictionary
+    sorted_text = sorted(text_lowercase)  # sorts the letters alphabetically
 
-    for character in text_lowercase:
+    for character in sorted_text:
         if character in freq:
             freq[character] += 1
         else:
