@@ -1,3 +1,8 @@
+# -*- coding: utf-8 -*-
+
+__author__ = "Christine Brinchmann"
+__email__ = "christibr@nmbu.no"
+
 from src.christine_brinchmann_ex.ex01.letter_counts import letter_freq
 
 
@@ -7,18 +12,19 @@ def char_counts(textfilename):
     Parameters
     ----------
     textfilename: the filename of the file which is opened using utf-8
-    encoding. The function then reads the entire file into one string.
+    encoding. The function reads the entire file into one string.
 
     Returns
     -------
     A list with the occurrences of character codes, between 0 and 255, in the
-    file opened. char_code_counts[i] gives the occurrences of character code i.
+    file opened. The index of each element in the list represents the
+    character code, and each element represents the occurrences of each
+    character code.
 
     """
 
-    infile = open(textfilename, 'r', encoding='utf-8')
-    single_string = infile.read()
-    infile.close()
+    with open(textfilename, 'r', encoding='utf-8') as infile:
+        single_string = infile.read()
 
     freq_char = letter_freq(single_string)
 
