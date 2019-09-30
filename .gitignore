@@ -236,3 +236,5 @@ dmypy.json
 .history
 
 # End of https://www.gitignore.io/api/python,pycharm+all,visualstudiocode,jupyternotebooks
+
+src/christine_brinchmann_ex/ex01/tests/
