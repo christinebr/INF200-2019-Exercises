@@ -69,3 +69,9 @@ def test_original_unchanged():
     data = [3, 2, 1]
     bubble_sort(data)
     assert data == data
+
+
+def test_sort_sorted():
+    """Test that sorting works on sorted data."""
+    data_sorted = [1, 2, 3]
+    assert bubble_sort(data_sorted) == data_sorted
