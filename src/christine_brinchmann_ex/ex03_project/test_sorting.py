@@ -31,3 +31,8 @@ def bubble_sort(data_input):
 def test_empty():
     """Test that the sorting function works for empty list"""
     assert bubble_sort([]) == []
+
+
+def test_single():
+    """Test that the sorting function works for single-element list"""
+    assert bubble_sort([3]) == [3]
