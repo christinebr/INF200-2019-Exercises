@@ -88,3 +88,19 @@ def test_sort_all_equal():
     """Test that sorting handles data with identical elements."""
     data = [1, 1, 1, 1, 1]
     assert bubble_sort(data) == sorted(data)
+
+
+def test_sorting():
+    """
+    Test sorting for various test cases.
+
+    This test case should test sorting of a range of data sets and
+    ensure that they are sorted correctly. These could be lists of
+    numbers of different length or lists of strings.
+    """
+    for data in ((),
+                 (2,),
+                 (3, 2, 5, 6),
+                 'hbgekdfaicj',
+                 ('orange', 'apple', 'pineapple', 'grapes', 'bananas')):
+        assert bubble_sort(data) == sorted(data)
