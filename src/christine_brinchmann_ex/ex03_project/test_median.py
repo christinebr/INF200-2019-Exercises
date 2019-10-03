@@ -31,3 +31,12 @@ def median(data):
 def test_single_element_list():
     """Tests that the median of a single element list is that element"""
     assert median([2]) == 2
+
+
+def test_odd_number_elements_list():
+    """
+    Tests that the correct median is returned for a list with odd numbers
+    of elements.
+    """
+    odd_list = [1, 2, 3, 4, 5]
+    assert median(odd_list) == 3
