@@ -82,3 +82,9 @@ def test_sort_reversed():
     data = [5, 2, 4, 1, 3, 6, 7, 8]
     reverse_sorted = sorted(data, reverse=True)
     assert bubble_sort(reverse_sorted) == sorted(data)
+
+
+def test_sort_all_equal():
+    """Test that sorting handles data with identical elements."""
+    data = [1, 1, 1, 1, 1]
+    assert bubble_sort(data) == sorted(data)
