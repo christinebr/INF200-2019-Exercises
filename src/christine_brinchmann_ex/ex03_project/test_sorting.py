@@ -75,3 +75,10 @@ def test_sort_sorted():
     """Test that sorting works on sorted data."""
     data_sorted = [1, 2, 3]
     assert bubble_sort(data_sorted) == data_sorted
+
+
+def test_sort_reversed():
+    """Test that sorting works on reverse-sorted data."""
+    data = [5, 2, 4, 1, 3, 6, 7, 8]
+    reverse_sorted = sorted(data, reverse=True)
+    assert bubble_sort(reverse_sorted) == sorted(data)
