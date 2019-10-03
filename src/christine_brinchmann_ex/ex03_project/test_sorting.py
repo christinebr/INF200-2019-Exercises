@@ -26,3 +26,8 @@ def bubble_sort(data_input):
                 new_data[j], new_data[j+1] = new_data[j+1], new_data[j]
 
     return new_data
+
+
+def test_empty():
+    """Test that the sorting function works for empty list"""
+    assert bubble_sort([]) == []
