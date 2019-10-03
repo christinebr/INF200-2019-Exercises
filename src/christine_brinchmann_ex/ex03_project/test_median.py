@@ -26,3 +26,8 @@ def median(data):
         return (
             sorted_data[num_elements // 2 - 1] + sorted_data[num_elements // 2]
             ) / 2
+
+
+def test_single_element_list():
+    """Tests that the median of a single element list is that element"""
+    assert median([2]) == 2
