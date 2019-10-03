@@ -104,3 +104,9 @@ def test_sorting():
                  'hbgekdfaicj',
                  ('orange', 'apple', 'pineapple', 'grapes', 'bananas')):
         assert bubble_sort(data) == sorted(data)
+
+
+def test_sort_float_list():
+    """Tests that sorting works for list with float elements"""
+    float_list = [3.2, 4.9, 1.0, 0.5, 5.5]
+    assert bubble_sort(float_list) == sorted(float_list)
