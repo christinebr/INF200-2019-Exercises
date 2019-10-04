@@ -79,3 +79,10 @@ def test_median_raises_value_error_on_empty_list():
     """Tests that the median function raises ValueError for empty list"""
     with pytest.raises(ValueError):
         median([])
+
+
+def test_median_leaves_original_data_unchanged():
+    """Tests that the median function doesn't change the original input data"""
+    data = [4, 3, 6, 2, 7, 8]
+    median(data)
+    assert data == data
