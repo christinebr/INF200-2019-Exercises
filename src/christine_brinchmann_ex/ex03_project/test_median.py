@@ -49,3 +49,9 @@ def test_even_number_elements_list():
     """
     even_list = [1, 2, 3, 4]
     assert median(even_list) == 2.5
+
+
+def test_median_for_ordered_elements():
+    """Test that the median function works for ordered elements in list"""
+    example_list = [1, 2, 3, 4, 5, 6, 7]
+    assert median(example_list) == 4
