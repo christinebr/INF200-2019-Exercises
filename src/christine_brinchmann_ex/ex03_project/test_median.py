@@ -52,6 +52,15 @@ def test_even_number_elements_list():
 
 
 def test_median_for_ordered_elements():
-    """Test that the median function works for ordered elements in list"""
+    """Tests that the median function works for ordered elements in list"""
     example_list = [1, 2, 3, 4, 5, 6, 7]
+    assert median(example_list) == 4
+
+
+def test_median_for_reverse_ordered_elements():
+    """
+    Tests that the median function works for reverse ordered elements in
+    list
+    """
+    example_list = [7, 6, 5, 4, 3, 2, 1]
     assert median(example_list) == 4
