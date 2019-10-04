@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import pytest
 
 __author__ = "Christine Brinchmann"
 __email__ = "christibr@nmbu.no"
@@ -20,12 +21,14 @@ def median(data):
     sorted_data = sorted(data)
     num_elements = len(sorted_data)
 
-    if num_elements % 2 == 1:
-        return sorted_data[num_elements // 2]
+    if num_elements == 0:
+        raise ValueError
     else:
-        return (
-            sorted_data[num_elements // 2 - 1] + sorted_data[num_elements // 2]
-            ) / 2
+        if num_elements % 2 == 1:
+            return sorted_data[num_elements // 2]
+        else:
+            return (sorted_data[num_elements // 2 - 1]
+                    + sorted_data[num_elements // 2]) / 2
 
 
 def test_single_element_list():
@@ -70,3 +73,9 @@ def test_median_for_unordered_elements():
     """Tests that the median function works for unordered elements in list"""
     example_list = [3, 1, 4, 2, 6, 7, 5]
     assert median(example_list) == 4
+
+
+def test_median_raises_value_error_on_empty_list():
+    """Tests that the median function raises ValueError for empty list"""
+    with pytest.raises(ValueError):
+        median([])
