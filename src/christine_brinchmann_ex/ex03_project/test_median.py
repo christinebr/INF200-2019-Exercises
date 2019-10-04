@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
-import pytest
 
 __author__ = "Christine Brinchmann"
 __email__ = "christibr@nmbu.no"
+
+import pytest
 
 
 def median(data):
@@ -95,3 +96,9 @@ def test_median_for_both_tuple_and_list():
     """
     data = [4, 3, 6, 2, 7, 8]
     assert median(data) == median(tuple(data))
+
+
+def test_median_float_list():
+    """Tests that the median function works for a list with float elements"""
+    float_list = [3.7, 4.1, 2.5, 7.4, 9.0]
+    assert median(float_list) == 4.1
