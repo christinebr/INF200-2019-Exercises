@@ -86,3 +86,12 @@ def test_median_leaves_original_data_unchanged():
     data = [4, 3, 6, 2, 7, 8]
     median(data)
     assert data == data
+
+
+def test_median_for_both_tuple_and_list():
+    """
+    Tests that the median function works for a tuple and a list with the
+    same elements.
+    """
+    data = [4, 3, 6, 2, 7, 8]
+    assert median(data) == median(tuple(data))
