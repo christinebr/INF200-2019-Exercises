@@ -64,3 +64,9 @@ def test_median_for_reverse_ordered_elements():
     """
     example_list = [7, 6, 5, 4, 3, 2, 1]
     assert median(example_list) == 4
+
+
+def test_median_for_unordered_elements():
+    """Tests that the median function works for unordered elements in list"""
+    example_list = [3, 1, 4, 2, 6, 7, 5]
+    assert median(example_list) == 4
