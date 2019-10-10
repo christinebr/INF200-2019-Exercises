@@ -1,4 +1,4 @@
-from random import randint
+from random import randint, seed
 
 __author__ = 'Christine Brinchmann', 'Marie Kolvik Valøy'
 __email__ = 'christibr@nmbu.no', 'mvaloy@nmbu.no'
@@ -77,9 +77,14 @@ def multiple_games(num_games, num_players):
     Source: https://github.com/yngvem/INF200-2019-Exercises/blob/master
     /exersices/pa01.rst
     """
+    num_moves = []
+    for game in range(num_games):
+        num_moves.append(single_game(num_players))
+
+    return num_moves
 
 
-def multi_game_experiment(num_games, num_players, seed):
+def multi_game_experiment(num_games, num_players, in_seed):
     """
     Returns durations of a number of games when playing with given seed.
 
@@ -89,7 +94,7 @@ def multi_game_experiment(num_games, num_players, seed):
         Number of games to play
     num_players : int
         Number of players in the game
-    seed : int
+    in_seed : int
         Seed used to initialise the random number generator
 
     Returns
@@ -100,3 +105,7 @@ def multi_game_experiment(num_games, num_players, seed):
     Source: https://github.com/yngvem/INF200-2019-Exercises/blob/master
     /exersices/pa01.rst
     """
+    seed(in_seed)
+    num_moves = multiple_games(num_games, num_players)
+
+    return num_moves
