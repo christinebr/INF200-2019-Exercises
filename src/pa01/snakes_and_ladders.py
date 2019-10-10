@@ -77,6 +77,11 @@ def multiple_games(num_games, num_players):
     Source: https://github.com/yngvem/INF200-2019-Exercises/blob/master
     /exersices/pa01.rst
     """
+    num_moves = []
+    for game in range(num_games):
+        num_moves.append(single_game(num_players))
+
+    return num_moves
 
 
 def multi_game_experiment(num_games, num_players, seed):
