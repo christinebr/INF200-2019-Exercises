@@ -1,5 +1,5 @@
 from random import randint, seed
-import numpy as np
+from numpy import median, mean, std
 
 __author__ = 'Christine Brinchmann', 'Marie Kolvik Valøy'
 __email__ = 'christibr@nmbu.no', 'mvaloy@nmbu.no'
@@ -117,12 +117,12 @@ if __name__ == '__main__':
     short = min(play_100_games)
     long = max(play_100_games)
 
-    median = np.median(play_100_games)
-    mean = np.mean(play_100_games)
-    std = np.std(play_100_games)
+    play_100_games_median = median(play_100_games)
+    play_100_games_mean = mean(play_100_games)
+    play_100_games_std = std(play_100_games)
 
-    print(f'The shortest game dutation: {short}')
+    print(f'The shortest game duration: {short}')
     print(f'The longest game duration : {long}')
-    print(f'The median game duration  : {median}')
-    print(f'The mean game duration    : {mean}')
-    print(f'The standard deviation    : {std:.2f}')
+    print(f'The median game duration  : {play_100_games_median}')
+    print(f'The mean game duration    : {play_100_games_mean}')
+    print(f'The standard deviation    : {play_100_games_std:.2f}')
