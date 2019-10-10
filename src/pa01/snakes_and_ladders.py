@@ -1,4 +1,5 @@
 from random import randint, seed
+import numpy as np
 
 __author__ = 'Christine Brinchmann', 'Marie Kolvik Valøy'
 __email__ = 'christibr@nmbu.no', 'mvaloy@nmbu.no'
@@ -109,3 +110,19 @@ def multi_game_experiment(num_games, num_players, in_seed):
     num_moves = multiple_games(num_games, num_players)
 
     return num_moves
+
+
+if __name__ == '__main__':
+    play_100_games = multi_game_experiment(100, 4, 1)
+    short = min(play_100_games)
+    long = max(play_100_games)
+
+    median = np.median(play_100_games)
+    mean = np.mean(play_100_games)
+    std = np.std(play_100_games)
+
+    print(f'The shortest game dutation: {short}')
+    print(f'The longest game duration : {long}')
+    print(f'The median game duration  : {median}')
+    print(f'The mean game duration    : {mean}')
+    print(f'The standard deviation    : {std:.2f}')
