@@ -1,3 +1,5 @@
+from random import randint
+
 __author__ = 'Christine Brinchmann', 'Marie Kolvik Valøy'
 __email__ = 'christibr@nmbu.no', 'mvaloy@nmbu.no'
 
@@ -37,6 +39,23 @@ def single_game(num_players):
     Source: https://github.com/yngvem/INF200-2019-Exercises/blob/master
     /exersices/pa01.rst
     """
+    positions = [0] * num_players
+
+    num_moves = 0
+    while max(positions) < 90:
+
+        for player in range(num_players):
+
+            new_position = positions[player] + randint(1, 6)
+
+            if new_position in ladders_snakes.keys():
+                positions[player] = ladders_snakes[new_position]
+            else:
+                positions[player] = new_position
+
+        num_moves += 1
+
+    return num_moves
 
 
 def multiple_games(num_games, num_players):
