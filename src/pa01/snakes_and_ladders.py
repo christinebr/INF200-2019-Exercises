@@ -1,3 +1,5 @@
+__author__ = 'Christine Brinchmann', 'Marie Kolvik Valøy'
+__email__ = 'christibr@nmbu.no', 'mvaloy@nmbu.no'
 
 
 def single_game(num_players):
