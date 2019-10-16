@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 from random import randint, seed
 from numpy import median, mean, std
 
