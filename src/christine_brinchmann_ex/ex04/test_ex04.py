@@ -9,8 +9,8 @@ Source: https://github.com/yngvem/INF200-2019-Exercises/blob/master/src
 """
 
 import pytest
-from myrand import LCGRand, ListRand
-from walker import Walker
+from src.christine_brinchmann_ex.ex04.myrand import LCGRand, ListRand
+from src.christine_brinchmann_ex.ex04.walker import Walker
 
 __author__ = 'Hans Ekkehard Plesser'
 __email__ = 'hans.ekkehard.plesser@nmbu.no'
