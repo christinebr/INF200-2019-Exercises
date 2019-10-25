@@ -8,11 +8,22 @@ from random import uniform
 
 class Walker:
     def __init__(self, initial_position, home):
+        """
+        Parameters
+        ----------
+        initial_position: the start position
+        home: the end position
+
+        Defines number of steps taken as zero.
+        """
         self.position = initial_position
         self.home = home
         self.steps = 0
 
     def move(self):
+        """
+        Takes a step to the left (-1) or right (+1) from the current position.
+        """
         self.steps += 1
         direction = uniform(0, 1)
         if direction < 0.5:
@@ -21,16 +32,39 @@ class Walker:
             self.position += 1
 
     def is_at_home(self):
+        """
+        Returns True if the end position is reached and False otherwise.
+        """
         return self.position == self.home
 
     def get_position(self):
+        """
+        Returns the position.
+        """
         return self.position
 
     def get_steps(self):
+        """
+        Returns number of steps taken.
+        """
         return self.steps
 
 
 def walking_process(start_position, distance_home, num_simulations):
+    """
+
+    Parameters
+    ----------
+    start_position: the start position
+    distance_home: the distance to the end position
+    num_simulations: number of simulations
+
+    Returns
+    -------
+    num_steps: a list with the steps taken to get from the start position
+    to the end position, for each simulation.
+
+    """
     num_steps = []
     for i in range(num_simulations):
 
