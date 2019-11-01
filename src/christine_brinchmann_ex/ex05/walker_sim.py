@@ -97,3 +97,28 @@ class Simulation:
             num_steps.append(self.single_walk())
 
         return num_steps
+
+
+if __name__ == '__main__':
+    seeds = [12345, 12345, 54321]
+    sim_steps_1 = []
+    sim_steps_2 = []
+    for i in range(len(seeds)):
+        sim_walk_1 = Simulation(0, 10, seeds[i])  # from start 0 to home 10
+        sim_walk_2 = Simulation(10, 0, seeds[i])  # from start 10 to home 0
+
+        sim_steps_1.append(sim_walk_1.run_simulation(20))  # 20 walks
+        sim_steps_2.append(sim_walk_2.run_simulation(20))  # 20 walks
+
+    print('20 walks from start 0 to home 10:')
+    for step1, seed_value in zip(sim_steps_1, seeds):
+        sorted_step1 = sorted(step1)
+
+        print('seed: {0} --> Number of steps: {1}'.format(seed_value,
+                                                          sorted_step1))
+
+    print('\n20 walks from start 10 to home 0:')
+    for step2, seed_value in zip(sim_steps_2, seeds):
+        sorted_step2 = sorted(step2)
+        print('seed: {0} --> Number of steps: {1}'.format(seed_value,
+                                                          sorted_step2))
