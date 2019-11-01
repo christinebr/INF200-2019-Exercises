@@ -39,6 +39,20 @@ class LCGRand:
         """
         return RandIter(self, length)
 
+    def infinite_random_sequence(self):
+        """
+        Generate an infinite sequence of random numbers.
+
+        Yields
+        ------
+        int
+            A random number.
+        """
+        random_number_iterator = RandIter(self, 'NaN')
+        random_number_iterator.__iter__()
+        while True:
+            yield random_number_iterator.__next__()
+
 
 class RandIter:
     def __init__(self, random_number_generator, length):
