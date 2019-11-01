@@ -68,7 +68,13 @@ class RandIter:
         RuntimeError
             If iter is called twice on the same RandIter object.
         """
-        pass
+
+        if self.num_generated_numbers is not None:
+            raise RuntimeError('Can only be initialised as an iterator once')
+
+        self.num_generated_numbers = 0
+
+        return self
 
     def __next__(self):
         """
@@ -86,4 +92,12 @@ class RandIter:
         StopIteration
             If ``self.length`` random numbers are generated.
         """
-        pass
+        if self.num_generated_numbers is None:
+            raise RuntimeError('__iter__ must be called before __next__')
+
+        if self.length == self.num_generated_numbers:
+            raise StopIteration(
+                f'{self.length} random numbers has been generated.')
+
+        self.num_generated_numbers += 1
+        return self.generator.rand()
