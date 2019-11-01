@@ -22,6 +22,23 @@ class BoundedWalker(Walker):
         right_limit : int
             The right boundary  of walker movement
         """
+        super().__init__(start, home)
+        self.left_limit = left_limit
+        self.right_limit = right_limit
+
+    def move(self):
+        """
+        Takes a step to the left (-1) or right (+1) from the current position,
+        with equal probability. If the walker goes beyond the left_limit or
+        the right_limit, the walker's position is set to that limit.
+        """
+        super().move()
+
+        if self.position < self.left_limit:
+            self.position = self.left_limit
+
+        if self.position > self.right_limit:
+            self.position = self.right_limit
 
 
 class BoundedSimulation(Simulation):
