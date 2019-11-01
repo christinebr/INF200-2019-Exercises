@@ -48,10 +48,8 @@ class LCGRand:
         int
             A random number.
         """
-        random_number_iterator = RandIter(self, 'NaN')
-        random_number_iterator.__iter__()
         while True:
-            yield random_number_iterator.__next__()
+            yield self.rand()
 
 
 class RandIter:
@@ -115,3 +113,15 @@ class RandIter:
 
         self.num_generated_numbers += 1
         return self.generator.rand()
+
+
+if __name__ == '__main__':
+    rand_number_generator = LCGRand(1)
+    for rand in rand_number_generator.random_sequence(10):
+        print(rand)
+
+    for i, rand in enumerate(
+            rand_number_generator.infinite_random_sequence()):
+        print(f'The {i}-th random number is {rand}')
+        if i > 100:
+            break
