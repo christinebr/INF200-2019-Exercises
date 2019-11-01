@@ -59,3 +59,23 @@ class BoundedSimulation(Simulation):
         right_limit : int
             The right boundary  of walker movement
         """
+        super().__init__(start, home, seed)
+        self.left_limit = left_limit
+        self.right_limit = right_limit
+
+    def single_walk(self):
+        """
+        Simulate single walk from start to home, returning number of steps.
+
+        Returns
+        -------
+        int
+            The number of steps taken
+        """
+        bounded_walker = BoundedWalker(self.start, self.home, self.left_limit,
+                                       self.right_limit)
+
+        while not bounded_walker.is_at_home():
+            bounded_walker.move()
+
+        return bounded_walker.get_steps()
