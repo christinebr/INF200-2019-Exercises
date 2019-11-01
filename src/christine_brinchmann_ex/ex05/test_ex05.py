@@ -4,6 +4,9 @@
 Acceptance test suite for EX05.
 
 Your code should pass these tests before submission.
+
+Source: https://github.com/yngvem/INF200-2019-Exercises/blob/master/src
+/YOUR_NAME_ex/ex05/test_ex05.py
 """
 
 from src.christine_brinchmann_ex.ex05.walker_sim import Walker, Simulation
