@@ -10,8 +10,8 @@ class Walker:
         """
         Parameters
         ----------
-        initial_position: the start position
-        home: the end position
+        initial_position: the initial position of the walker
+        home: the position of the walker's home
 
         Defines number of steps taken as zero.
         """
@@ -21,7 +21,8 @@ class Walker:
 
     def move(self):
         """
-        Takes a step to the left (-1) or right (+1) from the current position.
+        Takes a step to the left (-1) or right (+1) from the current position,
+        with equal probability.
         """
         self.steps += 1
         direction = random.uniform(0, 1)
@@ -31,21 +32,15 @@ class Walker:
             self.position += 1
 
     def is_at_home(self):
-        """
-        Returns True if the end position is reached and False otherwise.
-        """
+        """Returns True if the walker is at home and False otherwise."""
         return self.position == self.home
 
     def get_position(self):
-        """
-        Returns the position.
-        """
+        """Returns the current position."""
         return self.position
 
     def get_steps(self):
-        """
-        Returns number of steps taken.
-        """
+        """Returns number of steps taken by the walker."""
         return self.steps
 
 
