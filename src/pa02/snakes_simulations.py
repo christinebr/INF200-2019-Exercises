@@ -58,9 +58,9 @@ class ResilientPlayer(Player):
 
 
 class LazyPlayer(Player):
-    def __init__(self):
-        super().__init__()
-        pass
+    def __init__(self, board=Board(), dropped_steps=1):
+        super().__init__(board)
+        self.dropped_steps = dropped_steps
 
 
 class Simulation:
