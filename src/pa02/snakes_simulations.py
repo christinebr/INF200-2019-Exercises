@@ -44,7 +44,10 @@ class Board:
 
 
 class Player:
-    def __init__(self):
+    def __init__(self, board=Board()):
+        self.board = board
+
+    def move(self):
         pass
 
 
