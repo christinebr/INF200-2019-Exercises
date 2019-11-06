@@ -5,8 +5,8 @@ Minimal set of compatibility tests for PA02.
 __author__ = 'Hans Ekkehard Plesser'
 __email__ = 'hans.ekkehard.plesser@nmbu.no'
 
-import chutes_simulation as cs
-import pytest
+import src.pa02.snakes_simulations as cs
+# import pytest
 
 
 class TestBoard:
