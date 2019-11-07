@@ -18,3 +18,5 @@ class TestPBoard2:
         assert board.position_adjustment(8) == 10-8
 
         assert board.position_adjustment(56) == 56-37
+
+        assert board.position_adjustment(63) == 0
