@@ -21,7 +21,10 @@ class Board:
 
     def goal_reached(self, position):
         """ Return True if the goal is reached"""
-        return True
+        if self.goal == position:
+            return True
+        else:
+            return False
 
     def position_adjustment(self, position):
         """
@@ -40,6 +43,11 @@ class Board:
             a ladder or a snake
 
         """
+        for inner_tuple1, inner_tuple2 in zip(self.ladders, self.chutes):
+            if position == inner_tuple1[0]:
+                return inner_tuple1[1] - inner_tuple1[0]
+            elif position == inner_tuple2[0]:
+                return inner_tuple2[0] - inner_tuple2[1]
         return 0
 
 
