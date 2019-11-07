@@ -48,16 +48,22 @@ class Player:
         self.board = board
 
     def move(self):
+        """Moved the player by implementing a dice cast, the following move and,
+        if necessary, a move up a ladder or down a snake."""
         pass
 
 
 class ResilientPlayer(Player):
+    """Subclass of Player, takes extra steps for the next move, but only after
+    the player has gone down a snake."""
     def __init__(self, board=Board(), extra_steps=1):
         super().__init__(board)
         self.extra_steps = extra_steps
 
 
 class LazyPlayer(Player):
+    """Subclass of Player, takes a step less for the next move, but only after
+    after going up a ladder"""
     def __init__(self, board=Board(), dropped_steps=1):
         super().__init__(board)
         self.dropped_steps = dropped_steps
