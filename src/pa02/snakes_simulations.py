@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import random
 
 __author__ = 'Christine Brinchmann', 'Marie Kolvik Valøy'
 __email__ = 'christibr@nmbu.no', 'mvaloy@nmbu.no'
@@ -47,18 +48,21 @@ class Board:
             if position == inner_tuple1[0]:
                 return inner_tuple1[1] - inner_tuple1[0]
             elif position == inner_tuple2[0]:
-                return inner_tuple2[0] - inner_tuple2[1]
+                return inner_tuple2[1] - inner_tuple2[0]
         return 0
 
 
 class Player:
     def __init__(self, board=Board()):
         self.board = board
+        self.position = 0
 
     def move(self):
-        """Moved the player by implementing a dice cast, the following move and,
-        if necessary, a move up a ladder or down a snake."""
-        pass
+        """Moved the player by implementing a dice cast, the following move
+        and, if necessary, a move up a ladder or down a snake."""
+        throw = random.randint(1, 6)
+        self.position += throw
+        self.position += self.board.position_adjustment(self.position)
 
 
 class ResilientPlayer(Player):
