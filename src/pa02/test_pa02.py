@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import random
 
 __author__ = 'Christine Brinchmann', 'Marie Kolvik Valøy'
 __email__ = 'christibr@nmbu.no', 'mvaloy@nmbu.no'
@@ -20,3 +21,20 @@ class TestPBoard2:
         assert board.position_adjustment(56) == 56-37
 
         assert board.position_adjustment(63) == 0
+
+
+class TestPlayer2:
+    """Tests that Player works as supposed."""
+
+    def test_move(self):
+        player = ss.Player()
+        assert player.position == 0, 'Start position is not 0'
+        random.seed(2)
+        player.move()
+        assert player.position > 0, 'The player has not moved'
+        assert player.position != 1, 'The player cant be at the bottom of a ' \
+                                     'ladder'
+        random.seed(1)
+        player.move()
+        assert player.position != 42, 'The player cant be at the top of a ' \
+                                      'snake'
