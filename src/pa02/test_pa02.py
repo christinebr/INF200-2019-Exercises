@@ -79,3 +79,20 @@ class TestLazyPlayer2:
         random.seed(2)
         player.move()
         assert player.position == 40
+
+
+class TestSimulaiton2:
+    """Tests the class Simulation"""
+
+    def test_single_game_returns_tuple(self):
+        sim = ss.Simulation()
+        assert type(sim.single_game()) == tuple, 'single_game should return ' \
+                                                 'tuple'
+
+    def test_single_game_works(self):
+        sim = ss.Simulation()
+        game1 = sim.single_game()
+        game2 = sim.single_game()
+        assert game1 != game2, 'Your method single_game is not working.'
+
+    
