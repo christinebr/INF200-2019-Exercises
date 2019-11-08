@@ -94,5 +94,3 @@ class TestSimulaiton2:
         game1 = sim.single_game()
         game2 = sim.single_game()
         assert game1 != game2, 'Your method single_game is not working.'
-
-    
