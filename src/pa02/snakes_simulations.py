@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import random
 
 __author__ = 'Christine Brinchmann', 'Marie Kolvik Valøy'
 __email__ = 'christibr@nmbu.no', 'mvaloy@nmbu.no'
@@ -47,18 +48,21 @@ class Board:
             if position == inner_tuple1[0]:
                 return inner_tuple1[1] - inner_tuple1[0]
             elif position == inner_tuple2[0]:
-                return inner_tuple2[0] - inner_tuple2[1]
+                return inner_tuple2[1] - inner_tuple2[0]
         return 0
 
 
 class Player:
     def __init__(self, board=Board()):
         self.board = board
+        self.position = 0
 
     def move(self):
-        """Moved the player by implementing a dice cast, the following move and,
-        if necessary, a move up a ladder or down a snake."""
-        pass
+        """Moved the player by implementing a dice cast, the following move
+        and, if necessary, a move up a ladder or down a snake."""
+        throw = random.randint(1, 6)
+        self.position += throw
+        self.position += self.board.position_adjustment(self.position)
 
 
 class ResilientPlayer(Player):
@@ -68,13 +72,33 @@ class ResilientPlayer(Player):
         super().__init__(board)
         self.extra_steps = extra_steps
 
+    def move(self):
+        """If the player is at the bottom of a snake, it takes a given
+        number of extra steps."""
+        for inner_tuple in self.board.chutes:
+            if self.position == inner_tuple[1]:
+                self.position += self.extra_steps
+        super().move()
+
 
 class LazyPlayer(Player):
-    """Subclass of Player, takes a step less for the next move, but only after
+    """Subclass of Player, takes a step less for the next move, but only
     after going up a ladder"""
     def __init__(self, board=Board(), dropped_steps=1):
         super().__init__(board)
         self.dropped_steps = dropped_steps
+
+    def move(self):
+        """If the player is at the top of a ladder, it takes a given
+        number of steps less."""
+        saved_position = self.position
+        super().move()
+        for inner_tuple in self.board.ladders:
+            if saved_position == inner_tuple[1]:
+                if self.dropped_steps >= self.position - saved_position:
+                    self.position = saved_position
+                else:
+                    self.position -= self.dropped_steps
 
 
 class Simulation:
