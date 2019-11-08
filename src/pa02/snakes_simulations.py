@@ -86,6 +86,12 @@ class LazyPlayer(Player):
         super().__init__(board)
         self.dropped_steps = dropped_steps
 
+    def move(self):
+        for inner_tuple in self.board.ladders:
+            if self.position == inner_tuple[1]:
+                self.position -= self.dropped_steps
+        super().move()
+
 
 class Simulation:
     def __init__(self,
