@@ -26,7 +26,7 @@ class TestPBoard2:
 class TestPlayer2:
     """Tests that Player works as supposed."""
 
-    def test_move(self):
+    def test_move_original(self):
         player = ss.Player()
         assert player.position == 0, 'Start position is not 0'
         random.seed(2)
@@ -42,7 +42,7 @@ class TestPlayer2:
 
 class TestResilientPlayer2:
     """Tests that ResilientPlayer works as supposed."""
-    def test_move(self):
+    def test_move_default_extra_steps(self):
         """Test that ResilientPlayer takes one extra step after sliding
         down a snake"""
         player = ss.ResilientPlayer()
@@ -57,7 +57,7 @@ class TestResilientPlayer2:
 
 class TestLazyPlayer2:
     """Tests that ResilientPlayer works as supposed."""
-    def test_move(self):
+    def test_move_default_dropped_steps(self):
         """
         Test that LazyPlayer takes one step less after going up a ladders.
         """
