@@ -53,3 +53,17 @@ class TestResilientPlayer2:
         random.seed(2)
         player.move()
         assert player.position == 32
+
+
+class TestLazyPlayer2:
+    """Tests that ResilientPlayer works as supposed."""
+    def test_move(self):
+        """
+        Test that LazyPlayer takes one step less after going up a ladders.
+        """
+        player = ss.LazyPlayer()
+        random.seed(2)
+        player.move()
+        random.seed(1)
+        player.move()
+        assert player.position == 41
