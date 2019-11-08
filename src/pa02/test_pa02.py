@@ -38,3 +38,17 @@ class TestPlayer2:
         player.move()
         assert player.position != 42, 'The player cant be at the top of a ' \
                                       'snake'
+
+
+class TestResilientPlayer2:
+    """Tests that ResilientPlayer works as supposed."""
+    def test_move(self):
+        """Test that ResilientPlayer takes one extra step after sliding
+        down a snake"""
+        player = ss.ResilientPlayer()
+        random.seed(2)
+        player.move()
+        random.seed(1)
+        player.move()
+        random.seed(2)
+        assert player.position == 32
