@@ -67,3 +67,15 @@ class TestLazyPlayer2:
         random.seed(1)
         player.move()
         assert player.position == 41
+
+    def test_move_dropped_steps_greater_than_move(self):
+        """
+        Tests that LazyPlayer dont move backwards when dropped steps are
+        greater than the next move
+        """
+        player = ss.LazyPlayer(dropped_steps=3)
+        random.seed(2)
+        player.move()
+        random.seed(1)
+        player.move()
+        assert player.position == 40
