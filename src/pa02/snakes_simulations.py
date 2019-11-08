@@ -91,10 +91,14 @@ class LazyPlayer(Player):
     def move(self):
         """If the player is at the top of a ladder, it takes a given
         number of steps less."""
-        for inner_tuple in self.board.ladders:
-            if self.position == inner_tuple[1]:
-                self.position -= self.dropped_steps
+        saved_position = self.position
         super().move()
+        for inner_tuple in self.board.ladders:
+            if saved_position == inner_tuple[1]:
+                if self.dropped_steps >= self.position - saved_position:
+                    self.position = saved_position
+                else:
+                    self.position -= self.dropped_steps
 
 
 class Simulation:

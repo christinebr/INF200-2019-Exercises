@@ -64,9 +64,9 @@ class TestLazyPlayer2:
         player = ss.LazyPlayer()
         random.seed(2)
         player.move()
-        random.seed(1)
+        random.seed(5)
         player.move()
-        assert player.position == 41
+        assert player.position == 44
 
     def test_move_dropped_steps_greater_than_move(self):
         """
@@ -76,6 +76,6 @@ class TestLazyPlayer2:
         player = ss.LazyPlayer(dropped_steps=3)
         random.seed(2)
         player.move()
-        random.seed(1)
+        random.seed(2)
         player.move()
         assert player.position == 40
