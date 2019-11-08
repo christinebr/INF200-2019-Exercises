@@ -72,6 +72,12 @@ class ResilientPlayer(Player):
         super().__init__(board)
         self.extra_steps = extra_steps
 
+    def move(self):
+        for inner_tuple in self.board.chutes:
+            if self.position == inner_tuple[1]:
+                self.position += self.extra_steps
+        super().move()
+
 
 class LazyPlayer(Player):
     """Subclass of Player, takes a step less for the next move, but only after

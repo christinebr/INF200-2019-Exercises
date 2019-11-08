@@ -51,4 +51,5 @@ class TestResilientPlayer2:
         random.seed(1)
         player.move()
         random.seed(2)
+        player.move()
         assert player.position == 32
