@@ -102,7 +102,7 @@ class LazyPlayer(Player):
 
 
 class Simulation:
-    default_player = [Player(), Player()]
+    default_player = [Player, Player]
 
     def __init__(self,
                  player_field=None,
@@ -110,10 +110,14 @@ class Simulation:
                  seed=2,
                  randomize_players=True):
 
-        self.list_player = player_field
-        if not self.list_player:
-            self.list_player = self.default_player
+        self.list_player = []
+        if not player_field:
+            player_field = self.default_player
+
         self.board = board
+
+        for player_class in player_field:
+            self.list_player.append(player_class(self.board))
         self.seed = seed
         self.randomize_players = randomize_players
         self.variable = None
