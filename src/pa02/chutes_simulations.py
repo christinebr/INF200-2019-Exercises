@@ -152,7 +152,8 @@ class Simulation:
             number of games to play
 
         """
-        pass
+        for game in range(num_games):
+            self.results.append(self.single_game())
 
     def get_results(self):
         """
@@ -204,7 +205,7 @@ class Simulation:
         """
         players_dict = {'Player': 0, 'LazyPlayer': 0, 'ResilientPlayer': 0}
         for player in self.list_player:
-            if type(player).__name__== 'Player':
+            if type(player).__name__ == 'Player':
                 players_dict['Player'] += 1
             elif type(player).__name__ == 'LazyPlayer':
                 players_dict['LazyPlayer'] += 1
