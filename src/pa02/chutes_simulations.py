@@ -109,18 +109,15 @@ class Simulation:
                  board=Board(),
                  seed=2,
                  randomize_players=True):
-
-        self.list_player = []
         if not player_field:
-            player_field = self.default_player
+            self.player_field = self.default_player
+        else:
+            self.player_field = player_field
 
         self.board = board
-
-        for player_class in player_field:
-            self.list_player.append(player_class(self.board))
         self.seed = seed
         self.randomize_players = randomize_players
-        self.variable = None
+
         self.results = []
 
     def single_game(self):
@@ -131,16 +128,21 @@ class Simulation:
         a tuple consisting of the number of moves and the type of the winner
 
         """
-        num_moves = [0]*len(self.list_player)
-        for index, player in enumerate(self.list_player):
+        list_players = []
+        for player_class in self.player_field:
+            list_players.append(player_class(self.board))
+
+        num_moves = [0]*len(list_players)
+        for index, player in enumerate(list_players):
             while player.board.goal_reached(player.position) is False:
                 player.move()
                 num_moves[index] += 1
 
         num_moves_winner = min(num_moves)
         winner_index = num_moves.index(num_moves_winner)
+        winner = (num_moves_winner, type(list_players[winner_index]).__name__)
 
-        return num_moves_winner, type(self.list_player[winner_index]).__name__
+        return winner
 
     def run_simulation(self, num_games):
         """
@@ -152,7 +154,8 @@ class Simulation:
             number of games to play
 
         """
-        pass
+        for game in range(num_games):
+            self.results.append(self.single_game())
 
     def get_results(self):
         """
@@ -160,11 +163,10 @@ class Simulation:
         a list of result tuples.
 
         """
-        if self.variable is None:
-            self.variable = 0
-            return (10, 'Player'), (6, 'Player')
+        if not self.results:
+            raise RuntimeError('run_simulation() must be called first')
         else:
-            return (10, 'Player'), (6, 'Player'), (10, 'Player')
+            return self.results
 
     def winners_per_type(self):
         """
@@ -203,10 +205,10 @@ class Simulation:
         Returns a dictionary showing how many players of each type participate.
         """
         players_dict = {'Player': 0, 'LazyPlayer': 0, 'ResilientPlayer': 0}
-        for player in self.list_player:
-            if type(player).__name__== 'Player':
+        for player in self.player_field:
+            if player.__name__ == 'Player':
                 players_dict['Player'] += 1
-            elif type(player).__name__ == 'LazyPlayer':
+            elif player.__name__ == 'LazyPlayer':
                 players_dict['LazyPlayer'] += 1
             else:
                 players_dict['ResilientPlayer'] += 1
