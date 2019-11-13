@@ -187,9 +187,16 @@ class Simulation:
         for that type
 
         """
-        ex_dict = {'Player': [11, 25, 13], 'LazyPlayer': [39],
-                   'ResilientPlayer': [8, 7, 6, 11]}
-        return ex_dict
+        duration_dict = {'Player': [], 'LazyPlayer': [], 'ResilientPlayer': []}
+        for inner_tuple in self.results:
+            if inner_tuple[1] == 'Player':
+                duration_dict['Player'].append(inner_tuple[0])
+            elif inner_tuple[1] == 'LazyPlayer':
+                duration_dict['LazyPlayer'].append(inner_tuple[0])
+            else:
+                duration_dict['ResilientPlayer'].append(inner_tuple[0])
+        
+        return duration_dict
 
     def players_per_type(self):
         """
