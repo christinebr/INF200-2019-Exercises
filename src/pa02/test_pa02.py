@@ -85,12 +85,50 @@ class TestSimulaiton2:
     """Tests the class Simulation"""
 
     def test_single_game_returns_tuple(self):
+        """Tests that single_game returns a tuple."""
         sim = ss.Simulation()
         assert type(sim.single_game()) == tuple, 'single_game should return ' \
                                                  'tuple'
 
     def test_single_game_works(self):
+        """Tests that single_game does something."""
         sim = ss.Simulation()
         game1 = sim.single_game()
         game2 = sim.single_game()
         assert game1 != game2, 'Your method single_game is not working.'
+
+    def test_winners_per_type_returns_dict(self):
+        """Tests that winners_per_type returns dictionary"""
+        sim = ss.Simulation()
+        assert type(sim.winners_per_type()) == dict
+
+    def test_winners_per_type_num_players(self):
+        """Tests that all types of players are present"""
+        type_of_player = ['Player', 'LazyPlayer', 'ResilientPlayer']
+        sim = ss.Simulation()
+        run = sim.winners_per_type()
+        assert list(run.keys()) == type_of_player
+
+    def test_durations_per_type(self):
+        """Tests that durations_per_type returns dictionary"""
+        sim = ss.Simulation()
+        assert type(sim.durations_per_type()) == dict
+
+    def test_durations_per_type_num_players(self):
+        """Tests that all types of players are present"""
+        type_of_player = ['Player', 'LazyPlayer', 'ResilientPlayer']
+        sim = ss.Simulation()
+        run = sim.durations_per_type()
+        assert list(run.keys()) == type_of_player
+
+    def test_players_per_type(self):
+        """Tests that players_per_type returns dictionary"""
+        sim = ss.Simulation()
+        assert type(sim.players_per_type()) == dict
+
+    def test_players_per_type_num_players(self):
+        """Tests that all types of players are present"""
+        type_of_player = ['Player', 'LazyPlayer', 'ResilientPlayer']
+        sim = ss.Simulation()
+        run = sim.players_per_type()
+        assert list(run.keys()) == type_of_player

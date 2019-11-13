@@ -102,7 +102,7 @@ class LazyPlayer(Player):
 
 
 class Simulation:
-    default_player = [Player(), Player()]
+    default_player = [Player, Player]
 
     def __init__(self,
                  player_field=None,
@@ -110,13 +110,18 @@ class Simulation:
                  seed=2,
                  randomize_players=True):
 
-        self.list_player = player_field
-        if not self.list_player:
-            self.list_player = self.default_player
+        self.list_player = []
+        if not player_field:
+            player_field = self.default_player
+
         self.board = board
+
+        for player_class in player_field:
+            self.list_player.append(player_class(self.board))
         self.seed = seed
         self.randomize_players = randomize_players
         self.variable = None
+        self.results = []
 
     def single_game(self):
         """
@@ -165,8 +170,16 @@ class Simulation:
         """
         Returns a dictionary mapping player types to the number of wins.
         """
-        ex_dict = {'Player': 4, 'LazyPlayer': 2, 'ResilientPlayer': 5}
-        return ex_dict
+        result_dict = {'Player': 0, 'LazyPlayer': 0, 'ResilientPlayer': 0}
+        for inner_tuple in self.results:
+            if inner_tuple[1] == 'Player':
+                result_dict['Player'] += 1
+            elif inner_tuple[1] == 'LazyPlayer':
+                result_dict['LazyPlayer'] += 1
+            else:
+                result_dict['ResilientPlayer'] += 1
+
+        return result_dict
 
     def durations_per_type(self):
         """
@@ -174,13 +187,27 @@ class Simulation:
         for that type
 
         """
-        ex_dict = {'Player': [11, 25, 13], 'LazyPlayer': [39],
-                   'ResilientPlayer': [8, 7, 6, 11]}
-        return ex_dict
+        duration_dict = {'Player': [], 'LazyPlayer': [], 'ResilientPlayer': []}
+        for inner_tuple in self.results:
+            if inner_tuple[1] == 'Player':
+                duration_dict['Player'].append(inner_tuple[0])
+            elif inner_tuple[1] == 'LazyPlayer':
+                duration_dict['LazyPlayer'].append(inner_tuple[0])
+            else:
+                duration_dict['ResilientPlayer'].append(inner_tuple[0])
+
+        return duration_dict
 
     def players_per_type(self):
         """
         Returns a dictionary showing how many players of each type participate.
         """
-        ex_dict = {'Player': 3, 'LazyPlayer': 1, 'ResilientPlayer': 0}
-        return ex_dict
+        players_dict = {'Player': 0, 'LazyPlayer': 0, 'ResilientPlayer': 0}
+        for player in self.list_player:
+            if type(player).__name__== 'Player':
+                players_dict['Player'] += 1
+            elif type(player).__name__ == 'LazyPlayer':
+                players_dict['LazyPlayer'] += 1
+            else:
+                players_dict['ResilientPlayer'] += 1
+        return players_dict
