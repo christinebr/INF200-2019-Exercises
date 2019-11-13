@@ -121,6 +121,7 @@ class Simulation:
         self.seed = seed
         self.randomize_players = randomize_players
         self.variable = None
+        self.results = []
 
     def single_game(self):
         """
@@ -169,8 +170,16 @@ class Simulation:
         """
         Returns a dictionary mapping player types to the number of wins.
         """
-        ex_dict = {'Player': 4, 'LazyPlayer': 2, 'ResilientPlayer': 5}
-        return ex_dict
+        result_dict = {'Player': 0, 'LazyPlayer': 0, 'ResilientPlayer': 0}
+        for inner_tuple in self.results:
+            if inner_tuple[1] == 'Player':
+                result_dict['Player'] += 1
+            elif inner_tuple[1] == 'LazyPlayer':
+                result_dict['LazyPlayer'] += 1
+            else:
+                result_dict['ResilientPlayer'] += 1
+
+        return result_dict
 
     def durations_per_type(self):
         """
