@@ -109,6 +109,17 @@ class TestSimulaiton2:
         sim.run_simulation(10)
         assert sim.results != []
 
+    def test_get_results_returns_list_of_tuples(self):
+        sim = ss.Simulation()
+        sim.run_simulation(5)
+        assert type(sim.get_results()) == list
+        assert type(sim.get_results()[0]) == tuple
+
+    def test_get_results_returns_all_results(self):
+        sim = ss.Simulation()
+        sim.run_simulation(7)
+        assert len(sim.get_results()) == 7
+
     def test_winners_per_type_returns_dict(self):
         """Tests that winners_per_type returns dictionary"""
         sim = ss.Simulation()
