@@ -22,7 +22,7 @@ class Board:
 
     def goal_reached(self, position):
         """ Return True if the goal is reached"""
-        if self.goal == position:
+        if self.goal <= position:
             return True
         else:
             return False
@@ -122,7 +122,17 @@ class Simulation:
         a tuple consisting of the number of moves and the type of the winner
 
         """
-        return 25, 'Player'
+        num_moves = [0]*len(self.list_player)
+        for index, player in enumerate(self.list_player):
+            while player.board.goal_reached(player.position) is False:
+                player.move()
+                num_moves[index] += 1
+
+        num_moves_winner = min(num_moves)
+        winner_index = num_moves.index(num_moves_winner)
+
+        return num_moves_winner, type(self.list_player[winner_index]).__name__
+
 
     def run_simulation(self, num_games):
         """

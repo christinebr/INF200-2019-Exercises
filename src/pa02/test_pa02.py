@@ -26,7 +26,7 @@ class TestPBoard2:
 class TestPlayer2:
     """Tests that Player works as supposed."""
 
-    def test_move(self):
+    def test_move_original(self):
         player = ss.Player()
         assert player.position == 0, 'Start position is not 0'
         random.seed(2)
@@ -42,7 +42,7 @@ class TestPlayer2:
 
 class TestResilientPlayer2:
     """Tests that ResilientPlayer works as supposed."""
-    def test_move(self):
+    def test_move_default_extra_steps(self):
         """Test that ResilientPlayer takes one extra step after sliding
         down a snake"""
         player = ss.ResilientPlayer()
@@ -57,7 +57,7 @@ class TestResilientPlayer2:
 
 class TestLazyPlayer2:
     """Tests that ResilientPlayer works as supposed."""
-    def test_move(self):
+    def test_move_default_dropped_steps(self):
         """
         Test that LazyPlayer takes one step less after going up a ladders.
         """
@@ -79,3 +79,18 @@ class TestLazyPlayer2:
         random.seed(2)
         player.move()
         assert player.position == 40
+
+
+class TestSimulaiton2:
+    """Tests the class Simulation"""
+
+    def test_single_game_returns_tuple(self):
+        sim = ss.Simulation()
+        assert type(sim.single_game()) == tuple, 'single_game should return ' \
+                                                 'tuple'
+
+    def test_single_game_works(self):
+        sim = ss.Simulation()
+        game1 = sim.single_game()
+        game2 = sim.single_game()
+        assert game1 != game2, 'Your method single_game is not working.'
