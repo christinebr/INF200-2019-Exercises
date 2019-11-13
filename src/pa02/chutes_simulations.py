@@ -206,9 +206,9 @@ class Simulation:
         """
         players_dict = {'Player': 0, 'LazyPlayer': 0, 'ResilientPlayer': 0}
         for player in self.player_field:
-            if type(player).__name__ == 'Player':
+            if player.__name__ == 'Player':
                 players_dict['Player'] += 1
-            elif type(player).__name__ == 'LazyPlayer':
+            elif player.__name__ == 'LazyPlayer':
                 players_dict['LazyPlayer'] += 1
             else:
                 players_dict['ResilientPlayer'] += 1
