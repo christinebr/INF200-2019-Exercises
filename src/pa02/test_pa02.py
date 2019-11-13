@@ -97,6 +97,18 @@ class TestSimulaiton2:
         game2 = sim.single_game()
         assert game1 != game2, 'Your method single_game is not working.'
 
+    def test_run_simulation_returns_nothing(self):
+        """Tests that run_simulation returns nothing"""
+        sim = ss.Simulation()
+        assert sim.run_simulation(10) is None
+
+    def test_run_simulation_stores_result(self):
+        """Tests that run_simulation stores the results"""
+        sim = ss.Simulation()
+        assert sim.results == []
+        sim.run_simulation(10)
+        assert sim.results != []
+
     def test_winners_per_type_returns_dict(self):
         """Tests that winners_per_type returns dictionary"""
         sim = ss.Simulation()
