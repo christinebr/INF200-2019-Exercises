@@ -4,7 +4,7 @@ import random
 __author__ = 'Christine Brinchmann', 'Marie Kolvik Valøy'
 __email__ = 'christibr@nmbu.no', 'mvaloy@nmbu.no'
 
-import src.pa02.snakes_simulations as ss
+import src.pa02.chutes_simulations as ss
 
 
 class TestPBoard2:
