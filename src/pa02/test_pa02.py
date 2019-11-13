@@ -120,3 +120,15 @@ class TestSimulaiton2:
         sim = ss.Simulation()
         run = sim.durations_per_type()
         assert list(run.keys()) == type_of_player
+
+    def test_players_per_type(self):
+        """Tests that players_per_type returns dictionary"""
+        sim = ss.Simulation()
+        assert type(sim.players_per_type()) == dict
+
+    def test_players_per_type_num_players(self):
+        """Tests that all types of players are present"""
+        type_of_player = ['Player', 'LazyPlayer', 'ResilientPlayer']
+        sim = ss.Simulation()
+        run = sim.players_per_type()
+        assert list(run.keys()) == type_of_player
