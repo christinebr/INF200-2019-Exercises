@@ -102,13 +102,17 @@ class LazyPlayer(Player):
 
 
 class Simulation:
+    default_player = [Player(), Player()]
+
     def __init__(self,
-                 player_field=[Player(), Player()],
+                 player_field=None,
                  board=Board(),
                  seed=2,
                  randomize_players=True):
 
         self.list_player = player_field
+        if not self.list_player:
+            self.list_player = self.default_player
         self.board = board
         self.seed = seed
         self.randomize_players = randomize_players
@@ -132,7 +136,6 @@ class Simulation:
         winner_index = num_moves.index(num_moves_winner)
 
         return num_moves_winner, type(self.list_player[winner_index]).__name__
-
 
     def run_simulation(self, num_games):
         """
