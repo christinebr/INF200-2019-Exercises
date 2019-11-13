@@ -195,12 +195,19 @@ class Simulation:
                 duration_dict['LazyPlayer'].append(inner_tuple[0])
             else:
                 duration_dict['ResilientPlayer'].append(inner_tuple[0])
-        
+
         return duration_dict
 
     def players_per_type(self):
         """
         Returns a dictionary showing how many players of each type participate.
         """
-        ex_dict = {'Player': 3, 'LazyPlayer': 1, 'ResilientPlayer': 0}
-        return ex_dict
+        players_dict = {'Player': 0, 'LazyPlayer': 0, 'ResilientPlayer': 0}
+        for player in self.list_player:
+            if type(player).__name__== 'Player':
+                players_dict['Player'] += 1
+            elif type(player).__name__ == 'LazyPlayer':
+                players_dict['LazyPlayer'] += 1
+            else:
+                players_dict['ResilientPlayer'] += 1
+        return players_dict
