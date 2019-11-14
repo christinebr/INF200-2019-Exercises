@@ -131,6 +131,9 @@ class Simulation:
         list_players = []
         for player_class in self.player_field:
             list_players.append(player_class(self.board))
+            
+        if self.randomize_players:
+            random.shuffle(list_players)
 
         num_moves = [0]*len(list_players)
         for index, player in enumerate(list_players):
