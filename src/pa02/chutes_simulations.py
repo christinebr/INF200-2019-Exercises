@@ -216,3 +216,11 @@ class Simulation:
             else:
                 players_dict['ResilientPlayer'] += 1
         return players_dict
+
+
+if __name__ == '__main__':
+    players = [Player, LazyPlayer, LazyPlayer, ResilientPlayer]
+    sim = Simulation(players, seed=35)
+    sim.run_simulation(13)
+    print(sim.winners_per_type())
+    print(sim.durations_per_type())
