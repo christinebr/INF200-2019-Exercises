@@ -107,7 +107,7 @@ class Simulation:
     def __init__(self,
                  player_field=None,
                  board=Board(),
-                 seed=2,
+                 seed=None,
                  randomize_players=True):
         if not player_field:
             self.player_field = self.default_player
@@ -115,7 +115,7 @@ class Simulation:
             self.player_field = player_field
 
         self.board = board
-        self.seed = seed
+        random.seed(seed)
         self.randomize_players = randomize_players
 
         self.results = []
@@ -131,7 +131,7 @@ class Simulation:
         list_players = []
         for player_class in self.player_field:
             list_players.append(player_class(self.board))
-            
+
         if self.randomize_players:
             random.shuffle(list_players)
 
