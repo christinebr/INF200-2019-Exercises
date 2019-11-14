@@ -135,7 +135,7 @@ class TestSimulaiton2:
     def test_winners_per_type_sum(self):
         """Tests that total wins are equal to numbers of simulation."""
         sim = ss.Simulation()
-        run = sim.run_simulation(14)
+        sim.run_simulation(14)
         winners = sim.winners_per_type()
         assert sum(winners.values()) == 14
 
