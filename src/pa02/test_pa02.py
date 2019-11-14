@@ -132,6 +132,13 @@ class TestSimulaiton2:
         run = sim.winners_per_type()
         assert list(run.keys()) == type_of_player
 
+    def test_winners_per_type_sum(self):
+        """Tests that total wins are equal to numbers of simulation."""
+        sim = ss.Simulation()
+        sim.run_simulation(14)
+        winners = sim.winners_per_type()
+        assert sum(winners.values()) == 14
+
     def test_durations_per_type(self):
         """Tests that durations_per_type returns dictionary"""
         sim = ss.Simulation()

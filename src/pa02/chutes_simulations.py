@@ -107,7 +107,7 @@ class Simulation:
     def __init__(self,
                  player_field=None,
                  board=Board(),
-                 seed=2,
+                 seed=None,
                  randomize_players=True):
         if not player_field:
             self.player_field = self.default_player
@@ -115,7 +115,7 @@ class Simulation:
             self.player_field = player_field
 
         self.board = board
-        self.seed = seed
+        random.seed(seed)
         self.randomize_players = randomize_players
 
         self.results = []
@@ -131,6 +131,9 @@ class Simulation:
         list_players = []
         for player_class in self.player_field:
             list_players.append(player_class(self.board))
+
+        if self.randomize_players:
+            random.shuffle(list_players)
 
         num_moves = [0]*len(list_players)
         for index, player in enumerate(list_players):
@@ -213,3 +216,11 @@ class Simulation:
             else:
                 players_dict['ResilientPlayer'] += 1
         return players_dict
+
+
+if __name__ == '__main__':
+    players = [Player, LazyPlayer, LazyPlayer, ResilientPlayer]
+    sim = Simulation(players, seed=35)
+    sim.run_simulation(13)
+    print(sim.winners_per_type())
+    print(sim.durations_per_type())
