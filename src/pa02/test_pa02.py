@@ -152,11 +152,19 @@ class TestSimulaiton2:
         assert sim.run_simulation(10) is None
 
     def test_run_simulation_stores_result(self):
-        """Tests that run_simulation stores the results"""
+        """
+        Tests that run_simulation stores the results
+        Checks that:
+         *the results is initially empty
+        run a simulation of 10 games
+         *the results is not empty
+         *the length of results is equal to the number of simulations
+        """
         sim = ss.Simulation()
         assert sim.results == []
         sim.run_simulation(10)
         assert sim.results != []
+        assert len(sim.results) == 10
 
     def test_get_results_returns_list_of_tuples(self):
         """Tests that get_results returns a list consisting of tuples."""
