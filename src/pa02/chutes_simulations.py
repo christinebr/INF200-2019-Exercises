@@ -226,14 +226,17 @@ class Simulation:
         """
         Returns a dictionary showing how many players of each type participate.
         """
-        players_dict = {'Player': 0, 'LazyPlayer': 0, 'ResilientPlayer': 0}
+        players_dict = {}
         for player in self.player_field:
-            if player.__name__ == 'Player':
-                players_dict['Player'] += 1
-            elif player.__name__ == 'LazyPlayer':
-                players_dict['LazyPlayer'] += 1
-            else:
-                players_dict['ResilientPlayer'] += 1
+            players_dict[player.__name__] = 0
+
+        player_field_no_duplicate = list(dict.fromkeys(self.player_field))
+
+        for player in player_field_no_duplicate:
+            for player_original in self.player_field:
+                if player == player_original:
+                    players_dict[player.__name__] += 1
+
         return players_dict
 
 
