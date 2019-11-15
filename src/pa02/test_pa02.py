@@ -189,10 +189,20 @@ class TestSimulaiton2:
 
     def test_winners_per_type_num_players(self):
         """Tests that all types of players are present"""
-        type_of_player = ['Player', 'LazyPlayer', 'ResilientPlayer']
-        sim = ss.Simulation()
+        type_of_player = [ss.Player, ss.LazyPlayer, ss.ResilientPlayer]
+        sim = ss.Simulation(player_field=type_of_player)
         run = sim.winners_per_type()
-        assert list(run.keys()) == type_of_player
+        assert list(run.keys()) == ['Player', 'LazyPlayer', 'ResilientPlayer']
+
+    def test_winners_per_type_num_players_less(self):
+        """
+        Tests that all types of players that are playing are present, but not
+        those who aren't.
+        """
+        type_of_player = [ss.Player, ss.LazyPlayer, ss.Player]
+        sim = ss.Simulation(player_field=type_of_player)
+        run = sim.winners_per_type()
+        assert list(run.keys()) == ['Player', 'LazyPlayer']
 
     def test_winners_per_type_sum(self):
         """Tests that total wins are equal to numbers of simulation."""
@@ -208,10 +218,20 @@ class TestSimulaiton2:
 
     def test_durations_per_type_num_players(self):
         """Tests that all types of players are present"""
-        type_of_player = ['Player', 'LazyPlayer', 'ResilientPlayer']
-        sim = ss.Simulation()
+        type_of_player = [ss.Player, ss.LazyPlayer, ss.ResilientPlayer]
+        sim = ss.Simulation(player_field=type_of_player)
         run = sim.durations_per_type()
-        assert list(run.keys()) == type_of_player
+        assert list(run.keys()) == ['Player', 'LazyPlayer', 'ResilientPlayer']
+
+    def test_durations_per_type_num_players_less(self):
+        """
+        Tests that all types of players that are playing are present, but not
+        those who aren't.
+        """
+        type_of_player = [ss.Player, ss.LazyPlayer, ss.Player]
+        sim = ss.Simulation(player_field=type_of_player)
+        run = sim.durations_per_type()
+        assert list(run.keys()) == ['Player', 'LazyPlayer']
 
     def test_players_per_type(self):
         """Tests that players_per_type returns dictionary"""
