@@ -52,9 +52,13 @@ class TestPlayer2:
         """
         Checks that:
          *the start position is zero
+        First move: 1 -> position should now be 40 (goes up a ladder)
          *the player have moved after move() is called
          *the player cant be at the bottom of a ladder
+         *the player is at position 40
+        Second move: 2 -> position should now be 30 (goes down a ladder)
          *the player cant be at the top of a snake
+         *the player is at position 30
         """
         player = ss.Player()
         assert player.position == 0, 'Start position is not 0'
@@ -63,10 +67,12 @@ class TestPlayer2:
         assert player.position > 0, 'The player has not moved'
         assert player.position != 1, 'The player cant be at the bottom of a ' \
                                      'ladder'
+        assert player.position == 40
         random.seed(1)
         player.move()
         assert player.position != 42, 'The player cant be at the top of a ' \
                                       'snake'
+        assert player.position == 30
 
 
 class TestResilientPlayer2:
