@@ -240,7 +240,14 @@ class TestSimulaiton2:
 
     def test_players_per_type_num_players(self):
         """Tests that all types of players are present"""
-        type_of_player = ['Player', 'LazyPlayer', 'ResilientPlayer']
-        sim = ss.Simulation()
+        type_of_player = [ss.Player, ss.LazyPlayer, ss.ResilientPlayer]
+        sim = ss.Simulation(player_field=type_of_player)
         run = sim.players_per_type()
-        assert list(run.keys()) == type_of_player
+        assert list(run.keys()) == ['Player', 'LazyPlayer', 'ResilientPlayer']
+
+    def test_players_per_type_num_players_less(self):
+        """Tests that all types of players are present"""
+        type_of_player = [ss.Player, ss.LazyPlayer, ss.Player]
+        sim = ss.Simulation(player_field=type_of_player)
+        run = sim.players_per_type()
+        assert list(run.keys()) == ['Player', 'LazyPlayer']
