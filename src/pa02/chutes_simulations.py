@@ -134,6 +134,7 @@ class Simulation:
         self.randomize_players = randomize_players
 
         self.results = []
+        self.player_field_no_duplicate = list(dict.fromkeys(self.player_field))
 
     def single_game(self):
         """
@@ -194,9 +195,7 @@ class Simulation:
         for player in self.player_field:
             result_dict[player.__name__] = 0
 
-        player_field_no_duplicate = list(dict.fromkeys(self.player_field))
-
-        for player in player_field_no_duplicate:
+        for player in self.player_field_no_duplicate:
             for inner_tuple in self.results:
                 if player.__name__ == inner_tuple[1]:
                     result_dict[player.__name__] += 1
@@ -213,9 +212,7 @@ class Simulation:
         for player in self.player_field:
             duration_dict[player.__name__] = []
 
-        player_field_no_duplicate = list(dict.fromkeys(self.player_field))
-
-        for player in player_field_no_duplicate:
+        for player in self.player_field_no_duplicate:
             for inner_tuple in self.results:
                 if player.__name__ == inner_tuple[1]:
                     duration_dict[player.__name__].append(inner_tuple[0])
@@ -230,9 +227,7 @@ class Simulation:
         for player in self.player_field:
             players_dict[player.__name__] = 0
 
-        player_field_no_duplicate = list(dict.fromkeys(self.player_field))
-
-        for player in player_field_no_duplicate:
+        for player in self.player_field_no_duplicate:
             for player_original in self.player_field:
                 if player == player_original:
                     players_dict[player.__name__] += 1
