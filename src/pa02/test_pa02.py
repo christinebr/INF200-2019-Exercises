@@ -43,8 +43,14 @@ class TestPlayer2:
 class TestResilientPlayer2:
     """Tests that ResilientPlayer works as supposed."""
     def test_move_default_extra_steps(self):
-        """Test that ResilientPlayer takes one extra step after sliding
-        down a snake"""
+        """
+        Test that ResilientPlayer takes one extra step after sliding
+        down a snake
+
+        First move: 1 -> goes up ladder to position 40
+        Second move: 2 -> goes down snake to position 30
+        Third move: 1 -> should add the extra steps and end up at position 32
+        """
         player = ss.ResilientPlayer()
         random.seed(2)
         player.move()
@@ -56,10 +62,13 @@ class TestResilientPlayer2:
 
 
 class TestLazyPlayer2:
-    """Tests that ResilientPlayer works as supposed."""
+    """Tests that LazyPlayer works as supposed."""
     def test_move_default_dropped_steps(self):
         """
         Test that LazyPlayer takes one step less after going up a ladders.
+
+        First move: 1 -> goes up ladder to position 40
+        Second move: 5 -> should drop 1 step and end up at 44
         """
         player = ss.LazyPlayer()
         random.seed(2)
@@ -72,6 +81,9 @@ class TestLazyPlayer2:
         """
         Tests that LazyPlayer dont move backwards when dropped steps are
         greater than the next move
+
+        First move: 1 -> goes up ladder to position 40
+        Second move: 1 -> should not move because dropped_steps > move
         """
         player = ss.LazyPlayer(dropped_steps=3)
         random.seed(2)
