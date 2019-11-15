@@ -199,7 +199,7 @@ class TestSimulaiton2:
         Tests that all types of players that are playing are present, but not
         those who aren't.
         """
-        type_of_player = [ss.Player, ss.LazyPlayer]
+        type_of_player = [ss.Player, ss.LazyPlayer, ss.Player]
         sim = ss.Simulation(player_field=type_of_player)
         run = sim.winners_per_type()
         assert list(run.keys()) == ['Player', 'LazyPlayer']
