@@ -128,7 +128,7 @@ class TestLazyPlayer2:
         assert player.position == 40
 
 
-class TestSimulaiton2:
+class TestSimulation2:
     """Tests the class Simulation"""
 
     def test_single_game_returns_tuple(self):
@@ -246,7 +246,8 @@ class TestSimulaiton2:
         assert list(run.keys()) == ['Player', 'LazyPlayer', 'ResilientPlayer']
 
     def test_players_per_type_num_players_less(self):
-        """Tests that all types of players are present"""
+        """Tests that all types of players are present, but not those who
+        aren't"""
         type_of_player = [ss.Player, ss.LazyPlayer, ss.Player]
         sim = ss.Simulation(player_field=type_of_player)
         run = sim.players_per_type()
