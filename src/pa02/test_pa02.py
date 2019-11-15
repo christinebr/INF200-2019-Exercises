@@ -12,11 +12,23 @@ class TestPBoard2:
 
     def test_goal_reached(self):
         """
-        Check that goal is not reached when the position is 5 and the goal is
-        at position 100
+        Create a board with goal at position 100 and checks that goal is
+        not reached when:
+         *the position is 5
+         *the position is 90 (default goal)
+        Checks that the goal is reached when:
+         *the position is 100
+
+        Create a new board with default goal and check that goal is reached
+        when the position is 90.
         """
         board = ss.Board(goal=100)
         assert board.goal_reached(5) is False
+        assert board.goal_reached(90) is False
+        assert board.goal_reached(100) is True
+
+        board = ss.Board()
+        assert board.goal_reached(90) is True
 
     def test_position_adjustment(self):
         """
