@@ -241,3 +241,4 @@ if __name__ == '__main__':
     sim.run_simulation(13)
     print(sim.winners_per_type())
     print(sim.durations_per_type())
+    print(sim.players_per_type())
