@@ -209,14 +209,16 @@ class Simulation:
         for that type
 
         """
-        duration_dict = {'Player': [], 'LazyPlayer': [], 'ResilientPlayer': []}
-        for inner_tuple in self.results:
-            if inner_tuple[1] == 'Player':
-                duration_dict['Player'].append(inner_tuple[0])
-            elif inner_tuple[1] == 'LazyPlayer':
-                duration_dict['LazyPlayer'].append(inner_tuple[0])
-            else:
-                duration_dict['ResilientPlayer'].append(inner_tuple[0])
+        duration_dict = {}
+        for player in self.player_field:
+            duration_dict[player.__name__] = []
+
+        player_field_no_duplicate = list(dict.fromkeys(self.player_field))
+
+        for player in player_field_no_duplicate:
+            for inner_tuple in self.results:
+                if player.__name__ == inner_tuple[1]:
+                    duration_dict[player.__name__].append(inner_tuple[0])
 
         return duration_dict
 
