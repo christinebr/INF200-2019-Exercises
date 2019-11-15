@@ -71,14 +71,22 @@ class ResilientPlayer(Player):
     def __init__(self, board=Board(), extra_steps=1):
         super().__init__(board)
         self.extra_steps = extra_steps
+        self.extra_move_flag = False
 
     def move(self):
         """If the player is at the bottom of a snake, it takes a given
         number of extra steps."""
-        for inner_tuple in self.board.chutes:
-            if self.position == inner_tuple[1]:
-                self.position += self.extra_steps
-        super().move()
+        throw = random.randint(1, 6)
+        if self.extra_move_flag:
+            throw += self.extra_steps
+            self.extra_move_flag = False
+
+        self.position += throw
+        pos_adj = self.board.position_adjustment(self.position)
+        if pos_adj < 0:
+            self.extra_move_flag = True
+
+        self.position += pos_adj
 
 
 class LazyPlayer(Player):
