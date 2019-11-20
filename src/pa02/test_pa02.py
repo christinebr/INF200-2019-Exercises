@@ -4,7 +4,7 @@ import random
 __author__ = 'Christine Brinchmann', 'Marie Kolvik Valøy'
 __email__ = 'christibr@nmbu.no', 'mvaloy@nmbu.no'
 
-import src.pa02.chutes_simulations as ss
+import src.pa02.chutes_simulation as ss
 
 
 class TestPBoard2:
@@ -139,12 +139,25 @@ class TestSimulation2:
 
     def test_single_game_works(self):
         """
-        Tests that two games of single_game is different from each other.
+        Tests that two games of single_game is different from each other, when
+        the seed is different.
         """
-        sim = ss.Simulation()
+        sim = ss.Simulation(seed=154)
         game1 = sim.single_game()
+        sim = ss.Simulation(seed=79)
         game2 = sim.single_game()
         assert game1 != game2, 'Your method single_game is not working.'
+
+    def test_single_game_seed_works(self):
+        """
+        Tests that two games of single_game is equal, when the seed is
+        the same.
+        """
+        sim = ss.Simulation(seed=23)
+        game1 = sim.single_game()
+        sim = ss.Simulation(seed=23)
+        game2 = sim.single_game()
+        assert game1 == game2, 'Your seed in Simulation class is not working.'
 
     def test_run_simulation_returns_nothing(self):
         """Tests that run_simulation returns nothing"""
